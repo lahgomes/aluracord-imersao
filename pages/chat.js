@@ -7,17 +7,22 @@ export default function ChatPage() {
     const [listaDeMensagens, setListaDeMensagens] = React.useState([]);
     
     function handleNovaMensagem(novaMensagem) {
-        const mensagem = {
-            id: listaDeMensagens.length + 1,
-            de: 'lahgomes',
-            texto: novaMensagem,
-        };
+      const mensagem = {
+          id: listaDeMensagens.length + 1,
+          de: 'lahgomes',
+          texto: novaMensagem,
+      };
 
-        setListaDeMensagens([
-            mensagem,
-            ...listaDeMensagens,
-        ]);
-        setMensagem('');
+      setListaDeMensagens([
+          mensagem,
+          ...listaDeMensagens,
+      ]);
+      setMensagem('');
+    }
+
+    function handleDeleteMessage(id) {
+      const mensagemfiltrada = listaDeMensagens.filter((item) => item.id !== id)
+      setListaDeMensagens(mensagemfiltrada)      
     }
 
     return (
@@ -45,6 +50,7 @@ export default function ChatPage() {
                 }}
             >
                 <Header />
+
                 <Box
                     styleSheet={{
                         position: 'relative',
@@ -57,7 +63,7 @@ export default function ChatPage() {
                         padding: '16px',
                     }}
                 >
-                    <MessageList mensagens={listaDeMensagens} />
+                    <MessageList mensagens={listaDeMensagens} handleDeleteMessage={handleDeleteMessage} />
                     
                     <Box
                         as="form"
@@ -116,13 +122,13 @@ function Header() {
     )
 }
 
-function MessageList(props) {
-    
+function MessageList(props) { 
+  console.log('mensagens', props.mensagens)   
     return (
         <Box
             tag="ul"
             styleSheet={{
-                overflow: 'scroll',
+                overflow: 'auto',
                 display: 'flex',
                 flexDirection: 'column-reverse',
                 flex: 1,
@@ -140,22 +146,23 @@ function MessageList(props) {
                             padding: '6px',
                             marginBottom: '12px',
                             hover: {
-                                backgroundColor: appConfig.theme.colors.neutrals[700],
+                              backgroundColor: appConfig.theme.colors.neutrals[700],
                             }
                         }}
                     >
                         <Box
                             styleSheet={{
-                                marginBottom: '8px',
+                              marginBottom: '8px',
+                              position: 'relative'
                             }}
                         >
                             <Image
                                 styleSheet={{
-                                    width: '20px',
-                                    height: '20px',
-                                    borderRadius: '50%',
-                                    display: 'inline-block',
-                                    marginRight: '8px',
+                                  width: '20px',
+                                  height: '20px',
+                                  borderRadius: '50%',
+                                  display: 'inline-block',
+                                  marginRight: '8px',
                                 }}
                                 src={`https://github.com/lahgomes.png`}
                             />
@@ -164,14 +171,25 @@ function MessageList(props) {
                             </Text>
                             <Text
                                 styleSheet={{
-                                    fontSize: '10px',
-                                    marginLeft: '8px',
-                                    color: appConfig.theme.colors.neutrals[300],
+                                  fontSize: '10px',
+                                  marginLeft: '8px',
+                                  color: appConfig.theme.colors.neutrals[300],
                                 }}
                                 tag="span"
                             >
                                 {(new Date().toLocaleDateString())}
                             </Text>
+                            <Button
+                              styleSheet={{
+                                position: 'relative',
+                                left: '30px'                                
+                              }}
+
+                              onClick={() => props.handleDeleteMessage(mensagem.id)}
+                              variant='tertiary'
+                              colorVariant='neutral'
+                              label='Delete'                              
+                            />
                         </Box>
                         {mensagem.texto}
                     </Text>
