@@ -88,6 +88,7 @@ export default function PaginaInicial() {
             <Button
               type='submit'
               label='Entrar'
+              disabled={username.length <= 2}
               fullWidth
               buttonColors={{
                 contrastColor: appConfig.theme.colors.neutrals["000"],
@@ -99,9 +100,10 @@ export default function PaginaInicial() {
           </Box>
           {/* Formulário */}
 
-
           {/* Photo Area */}
-          <Box
+
+          {username.length >= 3 && (
+            <Box
             styleSheet={{
               display: 'flex',
               flexDirection: 'column',
@@ -125,14 +127,15 @@ export default function PaginaInicial() {
               variant="body4"
               styleSheet={{
                 color: appConfig.theme.colors.neutrals[200],
-                backgroundColor: appConfig.theme.colors.primary[700],
+                backgroundColor: appConfig.theme.colors.primary[700],               
                 padding: '3px 10px',
                 borderRadius: '1000px'
               }}
             >
               {username}
             </Text>
-          </Box>
+            </Box>
+          )}                    
           {/* Photo Area */}
         </Box>
       </Box>
