@@ -43,9 +43,9 @@ export default function ChatPage() {
                     boxShadow: '0 2px 10px 0 rgb(0 0 0 / 20%)',
                     borderRadius: '5px',
                     backgroundColor: appConfig.theme.colors.neutrals[700],
-                    height: '100%',
-                    maxWidth: '95%',
-                    maxHeight: '95vh',
+                    height: '90%',
+                    maxWidth: '80%',
+                    maxHeight: '90vh',
                     padding: '32px',
                 }}
             >
@@ -69,7 +69,7 @@ export default function ChatPage() {
                         as="form"
                         styleSheet={{
                             display: 'flex',
-                            alignItems: 'center',
+                            alignItems: 'center',                            
                         }}
                     >
                         <TextField
@@ -97,6 +97,17 @@ export default function ChatPage() {
                                 color: appConfig.theme.colors.neutrals[200],
                             }}
                         />
+                        <Button
+                            styleSheet={{
+                                padding: '12px',
+                                backgroundColor: appConfig.theme.colors.neutrals[700],
+                                hover: {
+                                backgroundColor: appConfig.theme.colors.primary[700],
+                                }
+                            }}
+                            onClick={() => handleNovaMensagem(mensagem)}
+                            label='Enviar'                              
+                        />
                     </Box>
                 </Box>
             </Box>
@@ -108,10 +119,21 @@ function Header() {
     return (
         <>
             <Box styleSheet={{ width: '100%', marginBottom: '16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }} >
-                <Text variant='heading5'>
+                <Text 
+                    variant='heading5'
+                    styleSheet={{
+                        textTransform: 'uppercase',                                           
+                    }}
+                >
                     Chat
                 </Text>
                 <Button
+                    styleSheet={{
+                        color: appConfig.theme.colors.primary['050'],
+                        hover: {
+                        backgroundColor: appConfig.theme.colors.primary['700'],
+                        }
+                    }}
                     variant='tertiary'
                     colorVariant='neutral'
                     label='Logout'
@@ -182,13 +204,15 @@ function MessageList(props) {
                             <Button
                               styleSheet={{
                                 position: 'relative',
-                                left: '30px'                                
-                              }}
-
-                              onClick={() => props.handleDeleteMessage(mensagem.id)}
-                              variant='tertiary'
-                              colorVariant='neutral'
-                              label='Delete'                              
+                                left: '20px',                                
+                                hover: {
+                                backgroundColor: appConfig.theme.colors.primary[700],
+                                }
+                            }}                                   
+                                onClick={() => props.handleDeleteMessage(mensagem.id)}
+                                variant='tertiary'
+                                colorVariant='neutral'
+                                label='Delete'                              
                             />
                         </Box>
                         {mensagem.texto}
