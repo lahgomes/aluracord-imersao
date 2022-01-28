@@ -9,15 +9,23 @@ const supabaseClient = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, proces
 export default function ChatPage() {
     const [mensagem, setMensagem] = React.useState('');
     const [listaDeMensagens, setListaDeMensagens] = React.useState([]);
+    const [loading, setLoading] = React.useState(false);
+
+
 
     React.useEffect(() => {
+        setLoading(true)
+
         supabaseClient
             .from('mensagens')
             .select('*')
             .order('id', { ascending: false })
             .then(({ data }) => {
                 setListaDeMensagens(data);    
-            });
+            })
+           /*  .finally() => {
+                setLoading(false)
+            }; */
     }, []);
     
     
@@ -69,9 +77,9 @@ export default function ChatPage() {
                     display: 'flex',
                     flexDirection: 'column',
                     flex: 1,
-                    boxShadow: '0 2px 10px 0 rgb(0 0 0 / 20%)',
+                    boxShadow: '0 2px 10px 0 rgb(0 0 0 / 30%)',
                     borderRadius: '5px',
-                    backgroundColor: appConfig.theme.colors.neutrals[700],
+                    backgroundColor:"rgba(65, 159, 180, .7)",
                     height: '90%',
                     maxWidth: '80%',
                     maxHeight: '90vh',
@@ -98,7 +106,7 @@ export default function ChatPage() {
                         as="form"
                         styleSheet={{
                             display: 'flex',
-                            alignItems: 'center',                            
+                            //alignItems: 'center',                            
                         }}
                     >
                         <TextField
@@ -128,10 +136,10 @@ export default function ChatPage() {
                         />
                         <Button
                             styleSheet={{
-                                padding: '12px',
+                                padding: '10px',
                                 backgroundColor: appConfig.theme.colors.neutrals[700],
                                 hover: {
-                                backgroundColor: appConfig.theme.colors.primary[700],
+                                    backgroundColor: appConfig.theme.colors.primary[700],
                                 }
                             }}
                             onClick={() => handleNovaMensagem(mensagem)}
@@ -232,10 +240,10 @@ function MessageList(props) {
                             </Text>
                             <Button
                               styleSheet={{
-                                position: 'relative',
-                                left: '20px',                                
+                                position: 'absolute',
+                                right: '10px',                                
                                 hover: {
-                                backgroundColor: appConfig.theme.colors.primary[700],
+                                    backgroundColor: appConfig.theme.colors.primary[700],
                                 }
                             }}                                   
                                 onClick={() => props.handleDeleteMessage(mensagem.id)}

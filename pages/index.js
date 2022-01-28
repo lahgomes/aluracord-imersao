@@ -21,7 +21,7 @@ function Titulo (props) {
 
 export default function PaginaInicial() {
   
-  const [username, setUsername] = React.useState('lahgomes');
+  const [username, setUsername] = React.useState('');
   const roteamento = useRouter();
 
   return (
@@ -45,8 +45,8 @@ export default function PaginaInicial() {
             },
             width: '100%', maxWidth: '700px',
             borderRadius: '5px', padding: '32px', margin: '16px',
-            boxShadow: '0 2px 10px 0 rgb(0 0 0 / 20%)',
-            backgroundColor: appConfig.theme.colors.neutrals[700],
+            boxShadow: '0 2px 10px 0 rgb(0 0 0 / 30%)',
+            backgroundColor:"rgba(65, 159, 180, .8)"
           }}
         >
           {/* Formulário */}
@@ -68,6 +68,7 @@ export default function PaginaInicial() {
             </Text>
             
             <TextField
+              placeholder='Insira seu usuário do Github'
               value={username}
               onChange={function (event) {
                 const valor = event.target.value;
@@ -100,10 +101,8 @@ export default function PaginaInicial() {
           </Box>
           {/* Formulário */}
 
-          {/* Photo Area */}
-
-          {username.length >= 3 && (
-            <Box
+          {/* Photo Area */}          
+          <Box
             styleSheet={{
               display: 'flex',
               flexDirection: 'column',
@@ -121,21 +120,26 @@ export default function PaginaInicial() {
                 borderRadius: '50%',
                 marginBottom: '16px',
               }}
-              src={`https://github.com/${username}.png`}
-            />
-            <Text
-              variant="body4"
-              styleSheet={{
-                color: appConfig.theme.colors.neutrals[200],
-                backgroundColor: appConfig.theme.colors.primary[700],               
-                padding: '3px 10px',
-                borderRadius: '1000px'
-              }}
-            >
-              {username}
-            </Text>
-            </Box>
-          )}                    
+              src={username.length >= 3 
+                ? `https://github.com/${username}.png`
+                : `https://cdn-icons-png.flaticon.com/512/25/25231.png`
+              }
+            />          
+
+            {username.length >= 3 && (
+              <Text
+                variant="body4"
+                styleSheet={{
+                  color: appConfig.theme.colors.neutrals[200],
+                  backgroundColor: appConfig.theme.colors.primary[700],               
+                  padding: '3px 10px',
+                  borderRadius: '1000px'
+                }}
+              >            
+                {username}
+              </Text> 
+            )}
+            </Box>                              
           {/* Photo Area */}
         </Box>
       </Box>
