@@ -1,5 +1,7 @@
 # Projeto de Imersão em React da Alura 
-Criação de um chat em tempo real utilizando o Supabase como banco de dados
+Criação de um chat em tempo real utilizando o Supabase como banco de dados.
+
+Repositório da [Imersão Alura.](https://github.com/alura-challenges/aluracord-matrix)
 
 ### Para testar o projeto clique [aqui.](https://aluracord-imersao-coral.vercel.app/)
 
