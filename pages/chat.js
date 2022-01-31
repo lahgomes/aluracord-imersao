@@ -1,4 +1,4 @@
-import { Box, Text, TextField, Image, Button } from '@skynexui/components'
+import { Box, Text, TextField, Image, Button, Icon } from '@skynexui/components'
 import React from 'react'
 import appConfig from '../config.json'
 import { useRouter } from 'next/router'
@@ -133,7 +133,8 @@ export default function ChatPage() {
             as="form"
             styleSheet={{
               display: 'flex',
-              //alignItems: 'center',
+              alignItems: 'center',
+              justifyContent: 'center',
             }}
           >
             <TextField
@@ -169,7 +170,7 @@ export default function ChatPage() {
             />
             <Button
               styleSheet={{
-                padding: '10px',
+                padding: '14px 12px',
                 backgroundColor: appConfig.theme.colors.neutrals[700],
                 hover: {
                   backgroundColor: appConfig.theme.colors.primary[700],
@@ -288,7 +289,7 @@ function MessageList(props) {
                 onClick={() => props.handleDeleteMessage(mensagem.id)}
                 variant="tertiary"
                 colorVariant="neutral"
-                label="Delete"
+                label={<Icon name="FaTrash" size={14} />}
               />
             </Box>
             {/* [Declarativo] */}
