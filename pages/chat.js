@@ -162,7 +162,7 @@ export default function ChatPage() {
                 color: appConfig.theme.colors.neutrals[200],
               }}
             />
-            {/* CallBack */}
+
             <ButtonSendSticker
               onStickerClick={sticker => {
                 handleNovaMensagem(':sticker: ' + sticker)
