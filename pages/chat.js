@@ -5,6 +5,8 @@ import { useRouter } from 'next/router'
 import { createClient } from '@supabase/supabase-js'
 import { ButtonSendSticker } from '../src/components/ButtonSendSticker'
 
+console.log(process.env.SUPABASE_URL)
+
 const supabaseClient = createClient(
   process.env.SUPABASE_URL,
   process.env.SUPABASE_ANON_KEY,
