@@ -1,9 +1,9 @@
-import React from 'react';
-import { Box, Button, Text, Image } from '@skynexui/components';
-import appConfig from '../../config.json';
+import React from 'react'
+import { Box, Button, Text, Image } from '@skynexui/components'
+import appConfig from '../../config.json'
 
 export function ButtonSendSticker(props) {
-  const [isOpen, setOpenState] = React.useState('');
+  const [isOpen, setOpenState] = React.useState('')
 
   return (
     <Box
@@ -19,6 +19,7 @@ export function ButtonSendSticker(props) {
           minHeight: '50px',
           fontSize: '20px',
           marginBottom: '8px',
+          marginRight: '8px',
           lineHeight: '0',
           display: 'flex',
           alignItems: 'center',
@@ -27,7 +28,12 @@ export function ButtonSendSticker(props) {
           filter: isOpen ? 'grayscale(0)' : 'grayscale(1)',
           hover: {
             filter: 'grayscale(0)',
-          }
+            backgroundColor: appConfig.theme.colors.primary[700],
+          },
+          focus: {
+            filter: 'grayscale(0)',
+            backgroundColor: appConfig.theme.colors.primary[700],
+          },
         }}
         label="😋"
         onClick={() => setOpenState(!isOpen)}
@@ -48,13 +54,14 @@ export function ButtonSendSticker(props) {
             right: '30px',
             bottom: '30px',
             padding: '16px',
-            boxShadow: 'rgba(4, 4, 5, 0.15) 0px 0px 0px 1px, rgba(0, 0, 0, 0.24) 0px 8px 16px 0px',
+            boxShadow:
+              'rgba(4, 4, 5, 0.15) 0px 0px 0px 1px, rgba(0, 0, 0, 0.24) 0px 8px 16px 0px',
           }}
           onClick={() => setOpenState(false)}
         >
           <Text
             styleSheet={{
-              color: appConfig.theme.colors.neutrals["000"],
+              color: appConfig.theme.colors.neutrals['000'],
               fontWeight: 'bold',
             }}
           >
@@ -71,24 +78,26 @@ export function ButtonSendSticker(props) {
               overflow: 'auto',
             }}
           >
-            {appConfig.stickers.map((sticker) => (
+            {appConfig.stickers.map(sticker => (
               <Text
                 onClick={() => {
-                    if (Boolean(props.onStickerClick)) {
-                    props.onStickerClick(sticker);
+                  if (Boolean(props.onStickerClick)) {
+                    props.onStickerClick(sticker)
                   }
                 }}
-                tag="li" key={sticker}
+                tag="li"
+                key={sticker}
                 styleSheet={{
                   width: '50%',
                   borderRadius: '5px',
                   padding: '10px',
+                  cursor: 'pointer',
                   focus: {
                     backgroundColor: appConfig.theme.colors.neutrals[600],
                   },
                   hover: {
-                    backgroundColor: appConfig.theme.colors.neutrals[600],
-                  }
+                    backgroundColor: appConfig.theme.colors.primary[700],
+                  },
                 }}
               >
                 <Image src={sticker} />
