@@ -153,6 +153,7 @@ export default function ChatPage() {
               type="textarea"
               styleSheet={{
                 width: '100%',
+
                 border: '0',
                 resize: 'none',
                 borderRadius: '5px',
@@ -171,6 +172,7 @@ export default function ChatPage() {
             <Button
               styleSheet={{
                 padding: '14px 12px',
+                marginBottom: '8px',
                 backgroundColor: appConfig.theme.colors.neutrals[700],
                 hover: {
                   backgroundColor: appConfig.theme.colors.primary[700],
